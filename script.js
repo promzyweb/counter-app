@@ -44,9 +44,9 @@ function setColor() {
 function setValue(flag){
   let counter = 0;
   
-  if (flag == '+') {
+  if (flag == add) {
     counter = parseInt(count.innerHTML)++;
-  } else if (flag == '-') {
+  } else if (flag == subtract) {
     counter = parseInt(count.innerHTML)--;
   }
   
