@@ -1,33 +1,59 @@
 // Grab the elements we will be needing.
 
-const count = document.querySelector(".count");
-const buttons = document.querySelector(".buttons");
+let count = document.querySelector(".count");
+let buttons = document.querySelector(".buttons");
+
+const add = '+';
+const subtract = '-';
+const colors = ['white','red','yellow'];
+const initialValue = 0;
+const redColor = 1;
+const yellowColor = 2;
 
 buttons.addEventListener("click", (e) => {
   if (e.target.classList.contains("add")) {
-    count.innerHTML++;
-    setColor();
+    processAction(add);
   }
 
   if (e.target.classList.contains("subtract")) {
-    count.innerHTML--;
-    setColor();
+    processAction(substract);
   }
 
   if (e.target.classList.contains("reset")) {
-    count.innerHTML = 0;
-    setColor();
+    processAction();
   }
 });
 
+function processAction(flag = 1){
+  
+  setValue(flag);
+  setColor();
+  
+}
+
 function setColor() {
-  if (count.innerHTML < 0) {
-    count.style.color = "red";
-  } else if (count.innerHTML > 0) {
-    count.style.color = "yellow";
-  } else {
-    count.style.color = "white";
+  let index = initialValue;
+  
+  if (count.innerHTML < initialValue) {
+    index = redColor;
+  } else if (count.innerHTML > initialValue) {
+    index = yellowColor;
   }
+  
+  count.style.color = colors[index];
+  
+}
+
+function setValue(flag){
+  let counter = initialValue;
+  
+  if (flag == add) {
+    counter = parseInt(count.innerHTML)++;
+  } else if (flag == subtract) {
+    counter = parseInt(count.innerHTML)--;
+  }
+  
+  count.innerHTML = counter;
 }
 
 
