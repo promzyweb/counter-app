@@ -6,6 +6,9 @@ let buttons = document.querySelector(".buttons");
 const add = '+';
 const subtract = '-';
 const colors = ['white','red','yellow'];
+const initialValue = 0;
+const redColor = 1;
+const yellowColor = 2;
 
 buttons.addEventListener("click", (e) => {
   if (e.target.classList.contains("add")) {
@@ -29,12 +32,12 @@ function processAction(flag = 1){
 }
 
 function setColor() {
-  let index = 0
+  let index = initialValue;
   
-  if (count.innerHTML < 0) {
-    index = 1;
-  } else if (count.innerHTML > 0) {
-    index = 2;
+  if (count.innerHTML < initialValue) {
+    index = redColor;
+  } else if (count.innerHTML > initialValue) {
+    index = yellowColor;
   }
   
   count.style.color = colors[index];
@@ -42,7 +45,7 @@ function setColor() {
 }
 
 function setValue(flag){
-  let counter = 0;
+  let counter = initialValue;
   
   if (flag == add) {
     counter = parseInt(count.innerHTML)++;
